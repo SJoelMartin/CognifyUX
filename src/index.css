@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CLA Design System - Dark Tech Aesthetic */
+
+@layer base {
+  :root {
+    /* Core palette - Cyan/Teal tech theme */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 173 80% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 10%;
+
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 173 60% 90%;
+    --accent-foreground: 173 80% 25%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 88%;
+    --ring: 173 80% 40%;
+
+    --radius: 0.75rem;
+
+    /* CLA-specific tokens */
+    --cla-low: 142 76% 36%;
+    --cla-mild: 47 96% 53%;
+    --cla-moderate: 25 95% 53%;
+    --cla-high: 0 72% 51%;
+    --cla-glow: 173 80% 40%;
+
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 220 25% 10%;
+    --sidebar-primary: 173 80% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 173 60% 92%;
+    --sidebar-accent-foreground: 173 80% 25%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 173 80% 40%;
+  }
+
+  .dark {
+    /* Deep space background with cyan accents */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 173 80% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 14%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 222 30% 12%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 173 50% 18%;
+    --accent-foreground: 173 80% 70%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 30% 16%;
+    --input: 222 30% 14%;
+    --ring: 173 80% 50%;
+
+    /* CLA-specific tokens - darker variants */
+    --cla-low: 142 76% 42%;
+    --cla-mild: 47 96% 50%;
+    --cla-moderate: 25 95% 55%;
+    --cla-high: 0 72% 55%;
+    --cla-glow: 173 80% 50%;
+
+    --sidebar-background: 222 47% 5%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 173 80% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 12%;
+    --sidebar-accent-foreground: 173 80% 70%;
+    --sidebar-border: 222 30% 14%;
+    --sidebar-ring: 173 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Custom scrollbar for dark theme */
+  .dark ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  /* Glow effects for CLA UI */
+  .cla-glow {
+    box-shadow: 0 0 20px hsl(var(--cla-glow) / 0.3),
+                0 0 40px hsl(var(--cla-glow) / 0.1);
+  }
+
+  .cla-glow-sm {
+    box-shadow: 0 0 10px hsl(var(--cla-glow) / 0.2);
+  }
+
+  /* Score indicator colors */
+  .cla-score-low {
+    color: hsl(var(--cla-low));
+  }
+
+  .cla-score-mild {
+    color: hsl(var(--cla-mild));
+  }
+
+  .cla-score-moderate {
+    color: hsl(var(--cla-moderate));
+  }
+
+  .cla-score-high {
+    color: hsl(var(--cla-high));
+  }
+
+  /* Animated background grid */
+  .cla-grid-bg {
+    background-image: 
+      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Glass morphism card */
+  .cla-glass {
+    background: hsl(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Metric card with subtle animation */
+  .cla-metric-card {
+    @apply relative overflow-hidden rounded-xl bg-card border border-border p-6;
+    transition: all 0.3s ease;
+  }
+
+  .cla-metric-card:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
+  }
+
+  /* Pulse animation for live indicators */
+  .cla-pulse {
+    animation: cla-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes cla-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Gradient text effect */
+  .cla-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(173 80% 70%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  /* Fade in animation */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Slide up animation */
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Staggered animation delays */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+}
